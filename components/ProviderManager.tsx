@@ -35,7 +35,7 @@ const ModelSchema = z.object({
 
 const ProviderSchema = z.object({
   provider: z.string().min(1, "Provider name is required."),
-  apiKeyEnvVar: z.string().min(1, "API Key Env Var is required."),
+  apiKey: z.string().min(1, "API Key Env Var is required."),
   baseUrl: z.string().url("Must be a valid URL.").optional().or(z.literal("")),
   models: z.array(ModelSchema).min(1, "At least one model is required."),
 });
@@ -58,7 +58,7 @@ export function ProviderManager() {
       providers: [
         {
           provider: "Groq",
-          apiKeyEnvVar: "GROQ_API_KEY",
+          apiKey: "123",
           baseUrl: "https://api.groq.com/openai/v1",
           models: [
             {
@@ -135,7 +135,7 @@ export function ProviderManager() {
         </CardHeader>
         <CardContent>
           <Textarea
-            placeholder='[{"provider":"MyProvider","apiKeyEnvVar":"MY_API_KEY",...}]'
+            placeholder='[{"provider":"MyProvider","apiKey":"MY_API_KEY",...}]'
             value={importJson}
             onChange={(e) => setImportJson(e.target.value)}
             rows={5}
@@ -183,12 +183,12 @@ export function ProviderManager() {
                   />
                   <FormField
                     control={form.control}
-                    name={`providers.${providerIndex}.apiKeyEnvVar`}
+                    name={`providers.${providerIndex}.apiKey`}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>API Key Env Var</FormLabel>
+                        <FormLabel>API Key</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g., GROQ_API_KEY" {...field} />
+                          <Input placeholder="e.g., 123" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -225,7 +225,7 @@ export function ProviderManager() {
               onClick={() =>
                 appendProvider({
                   provider: "",
-                  apiKeyEnvVar: "",
+                  apiKey: "",
                   baseUrl: "",
                   models: [{ apiName: "", uiName: "", supportsTools: false }],
                 })
