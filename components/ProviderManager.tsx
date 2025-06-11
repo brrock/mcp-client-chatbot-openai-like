@@ -116,9 +116,10 @@ export function ProviderManager() {
       });
     } catch (error) {
       toast.error("Invalid JSON format.", {
-        description: "Could not parse the JSON. Please check for syntax errors.",
+        description:
+          "Could not parse the JSON. Please check for syntax errors.",
       });
-        console.error("Import error:", error);
+      console.error("Import error:", error);
     }
   };
 
@@ -213,7 +214,10 @@ export function ProviderManager() {
                 </div>
 
                 {/* --- Nested Form Array for Models --- */}
-                <ModelArray control={form.control} providerIndex={providerIndex} />
+                <ModelArray
+                  control={form.control}
+                  providerIndex={providerIndex}
+                />
               </CardContent>
             </Card>
           ))}
@@ -260,7 +264,6 @@ export function ProviderManager() {
     </div>
   );
 }
-
 
 function ModelArray({
   control,
