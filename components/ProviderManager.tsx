@@ -35,7 +35,7 @@ const ModelSchema = z.object({
 
 const ProviderSchema = z.object({
   provider: z.string().min(1, "Provider name is required."),
-  apiKey: z.string().min(1, "API Key Env Var is required."),
+  apiKey: z.string().min(1, "API Key is required."),
   baseUrl: z.string().url("Must be a valid URL.").optional().or(z.literal("")),
   models: z.array(ModelSchema).min(1, "At least one model is required."),
 });
